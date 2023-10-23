@@ -43,7 +43,7 @@ public class TimeServlet extends HttpServlet {
 
 
         String timezoneParam = request.getParameter("timezone");
-        TimeZone timeZone;
+
 
         if (timezoneParam != null) {
             timezoneParam = URLEncoder.encode(timezoneParam, "UTF-8");
@@ -64,8 +64,8 @@ public class TimeServlet extends HttpServlet {
 
         TimeZone timezone = TimeZone.getTimeZone("UTC");
 
-        if (lastTimeZone != null) {
-            String stringZoneID = lastTimeZone.substring(3).trim();
+        if (timezoneParam  != null) {
+            String stringZoneID = timezoneParam.substring(3).trim();
 
             int zoneId = Integer.parseInt(stringZoneID);
             timezone.setRawOffset(zoneId * MILLISECONDS_IN_HOUR);
@@ -78,6 +78,5 @@ public class TimeServlet extends HttpServlet {
         Context context = new Context();
         context.setVariable("currentTime", currentTime);
         engine.process("time", context, response.getWriter());
-        response.getWriter().close();
     }
 }

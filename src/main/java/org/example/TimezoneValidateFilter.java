@@ -20,9 +20,9 @@ public class TimezoneValidateFilter implements Filter {
         if (isValidTimezone(timezoneParam)) {
             chain.doFilter(request, response);
         } else {
-            response.setContentType("text/html; charset=utf-8");
+            httpResponse.setContentType("text/html; charset=utf-8");
             httpResponse.setCharacterEncoding("UTF-8");
-            response.getWriter().write("<h1>Invalid timezone</h1>");
+            httpResponse.getWriter().write("<h1>Invalid timezone</h1>");
             ((HttpServletResponse) response).setStatus(400);
             response.getWriter().close();
         }
