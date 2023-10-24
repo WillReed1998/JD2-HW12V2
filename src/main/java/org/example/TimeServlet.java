@@ -28,7 +28,7 @@ public class TimeServlet extends HttpServlet {
         engine = new TemplateEngine();
 
         FileTemplateResolver resolver = new FileTemplateResolver();
-        resolver.setPrefix("templates/");
+        resolver.setPrefix("webapps/WEB-INF/templates/");
         resolver.setSuffix(".html");
         resolver.setTemplateMode("HTML5");
         resolver.setOrder(engine.getTemplateResolvers().size());
@@ -38,8 +38,7 @@ public class TimeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html; charset=utf-8");
-        response.getWriter().println("<html><head><title>Current Time</title></head><body>");
+
 
 
         String timezoneParam = request.getParameter("timezone");
